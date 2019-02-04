@@ -1,7 +1,6 @@
 /* eslint-env jest */
 const configPaths = require('../config/paths.json')
 const PORT = configPaths.testPort
-// const axe = require('../../../lib/axe-helper')
 const { AxePuppeteer } = require('axe-puppeteer')
 
 let browser
