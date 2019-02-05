@@ -6,7 +6,12 @@ const { AxePuppeteer } = require('axe-puppeteer')
 let browser
 let page
 let baseUrl = 'http://localhost:' + PORT
-
+const thingsToExclude = [
+  // axe reports there is "no label associated with the text field", when there is one.
+  ['#app-site-search__input'],
+  // axe reports that the phase banner is not inside a landmark, which is intentional.
+  ['.app-phase-banner__wrapper']
+]
 beforeAll(async (done) => {
   browser = global.browser
   page = await browser.newPage()
@@ -25,14 +30,8 @@ describe('Accessibility Audit', () => {
       const results =
         await new AxePuppeteer(page)
           .include(['body'])
-          .exclude(
-            // axe reports there is "no label associated with the text field", when there is one.
-            ['#app-site-search__input'],
-            // axe reports that the phase banner is not inside a landmark, which is intentional.
-            ['.app-phase-banner__wrapper']
-          )
+          .exclude(...thingsToExclude)
           .analyze()
-
       expect(results.violations).toEqual([])
     })
   })
@@ -43,12 +42,7 @@ describe('Accessibility Audit', () => {
       const results =
         await new AxePuppeteer(page)
           .include(['body'])
-          .exclude(
-            // axe reports there is "no label associated with the text field", when there is one.
-            ['#app-site-search__input'],
-            // axe reports that the phase banner is not inside a landmark, which is intentional.
-            ['.app-phase-banner__wrapper']
-          )
+          .exclude(...thingsToExclude)
           .analyze()
 
       expect(results.violations).toEqual([])
@@ -61,12 +55,7 @@ describe('Accessibility Audit', () => {
       const results =
         await new AxePuppeteer(page)
           .include(['body'])
-          .exclude(
-            // axe reports there is "no label associated with the text field", when there is one.
-            ['#app-site-search__input'],
-            // axe reports that the phase banner is not inside a landmark, which is intentional.
-            ['.app-phase-banner__wrapper']
-          )
+          .exclude(...thingsToExclude)
           .analyze()
 
       expect(results.violations).toEqual([])
@@ -79,12 +68,7 @@ describe('Accessibility Audit', () => {
       const results =
         await new AxePuppeteer(page)
           .include(['body'])
-          .exclude(
-            // axe reports there is "no label associated with the text field", when there is one.
-            ['#app-site-search__input'],
-            // axe reports that the phase banner is not inside a landmark, which is intentional.
-            ['.app-phase-banner__wrapper']
-          )
+          .exclude(...thingsToExclude)
           .analyze()
 
       expect(results.violations).toEqual([])
@@ -97,12 +81,7 @@ describe('Accessibility Audit', () => {
       const results =
         await new AxePuppeteer(page)
           .include(['body'])
-          .exclude(
-            // axe reports there is "no label associated with the text field", when there is one.
-            ['#app-site-search__input'],
-            // axe reports that the phase banner is not inside a landmark, which is intentional.
-            ['.app-phase-banner__wrapper']
-          )
+          .exclude(...thingsToExclude)
           .analyze()
 
       expect(results.violations).toEqual([])
@@ -115,12 +94,7 @@ describe('Accessibility Audit', () => {
       const results =
         await new AxePuppeteer(page)
           .include(['body'])
-          .exclude(
-            // axe reports there is "no label associated with the text field", when there is one.
-            ['#app-site-search__input'],
-            // axe reports that the phase banner is not inside a landmark, which is intentional.
-            ['.app-phase-banner__wrapper']
-          )
+          .exclude(...thingsToExclude)
           .analyze()
 
       expect(results.violations).toEqual([])
